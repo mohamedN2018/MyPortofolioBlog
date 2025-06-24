@@ -18,7 +18,12 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include # Import include to include app URLs
 
-urlpatterns = [
+from django.conf.urls.i18n import i18n_patterns
+from django.conf.urls.i18n import set_language
+from django.utils.translation import gettext_lazy as _
+
+urlpatterns = i18n_patterns(
+    path('i18n/setlang/', set_language, name='set_language'),
     path('admin/', admin.site.urls),
     path('', include('portfolio.urls')),  # Include the portfolio app URLs
-]
+)
