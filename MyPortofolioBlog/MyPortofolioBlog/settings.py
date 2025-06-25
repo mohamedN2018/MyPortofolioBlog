@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',    # Custom app for user accounts
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,7 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'portfolio',  # Custom app for the portfolio blog
+    'core',        # Core app for shared functionality
+    'hero',        # Custom app for hero section
+    'about',       # Custom app for the about page
+    'resume',
+    'portfolio',   # Custom app for the portfolio blog
+    'services',    # Custom app for services section
+    'testimonials',  # Custom app for testimonials section
+    'contact',     # Custom app for contact form
 ]
 
 MIDDLEWARE = [
