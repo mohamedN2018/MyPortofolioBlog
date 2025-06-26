@@ -23,7 +23,19 @@ from django.conf.urls.i18n import set_language
 from django.utils.translation import gettext_lazy as _
 
 urlpatterns = i18n_patterns(
+    path("accounts/", include("django.contrib.auth.urls")),
+    path('accounts/', include('accounts.urls'), name='accounts'),
     path('i18n/setlang/', set_language, name='set_language'),
     path('admin/', admin.site.urls),
-    path('', include('portfolio.urls')),  # Include the portfolio app URLs
+    path('', include('core.urls')),  # Include the portfolio app URLs
+  
+    # path('hero/', include('hero.urls')),  # Include the portfolio app URLs
+    # path('about/', include('about.urls')),  # Include the portfolio app URLs
+    # path('resume/', include('resume.urls')),  # Include the portfolio app URLs
+    # path('portfolio/', include('portfolio.urls')),  # Include the portfolio app URLs
+    # path('services/', include('services.urls')),  # Include the portfolio app URLs
+    # path('testimonials/', include('testimonials.urls')),  # Include the portfolio app URLs
+    # path('contact/', include('contact.urls')),  # Include the portfolio app URLs
+
 )
+
