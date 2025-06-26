@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sample Header</title>
+    <title>{{ HeroPage.site_name }}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
       <!-- Main CSS File -->
     <link href="{% static 'css/main.css' %}" rel="stylesheet">
@@ -36,26 +36,7 @@
 
   <main class="main">
     <!-- Hero Section -->
-    <section id="hero" class="hero section light-background">
-
-      <img src="{% static 'img/bac6.png' %}" alt="">
-
-      <div class="container" data-aos="zoom-out">
-        <div class="row justify-content-center">
-          <div class="col-lg-9">
-            <h2>Brandon Johnson</h2>
-            <p>I'm <span class="typed" data-typed-items="Designer, Developer, Freelancer, Photographer">Designer</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
-            <div class="social-links">
-              <a href="#"><i class="bi bi-twitter-x"></i></a>
-              <a href="#"><i class="bi bi-facebook"></i></a>
-              <a href="#"><i class="bi bi-instagram"></i></a>
-              <a href="#"><i class="bi bi-linkedin"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </section><!-- /Hero Section -->
+  {% include "hero/heropage.html" %}
 
     <!-- About Section -->
     <section id="about" class="about section">

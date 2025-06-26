@@ -274,7 +274,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">User naem</h6>
+                                            <h6 class="mb-0">Username</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" class="form-control" name="username" id="username"
@@ -330,12 +330,19 @@
                                             <h6 class="mb-0">Phone</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" class="form-control" value="(239) 816-9029">
+                                             <input type="text" class="form-control" name="phone" id="phone" value="{{ user_form.phone.value }}">
+                                            {% if user_form.phone.errors %}
+                                                <ul class="errorlist">
+                                                    {% for error in user_form.phone.errors %}
+                                                        <li>{{ error }}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            {% endif %}
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="is_active"><input type="checkbox" name="is_active" id="is_active"
-                                                                      {% if user_form.is_active.value %}checked{% endif %}>
+                                        {% if user_form.is_active.value %}checked{% endif %}>
                                             Active</label>
                                         <small>Uncheck to deactivate your account.</small>
                                         {% if user_form.is_active.errors %}
@@ -349,7 +356,7 @@
 
                                     <div class="form-group">
                                         <label for="is_staff"><input type="checkbox" name="is_staff" id="is_staff"
-                                                                     {% if user_form.is_staff.value %}checked{% endif %}>
+                                        {% if user_form.is_staff.value %}checked{% endif %}>
                                             Staff Status</label>
                                         <small>Check if you want to grant staff privileges.</small>
                                         {% if user_form.is_staff.errors %}
@@ -362,8 +369,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="is_superuser"><input type="checkbox" name="is_superuser"
-                                                                         id="is_superuser"
-                                                                         {% if user_form.is_superuser.value %}checked{% endif %}>
+                                                                        id="is_superuser"
+                                        {% if user_form.is_superuser.value %}checked{% endif %}>
                                             Superuser Status</label>
                                         <small>Check if you want to grant superuser privileges.</small>
                                         {% if user_form.is_superuser.errors %}
@@ -379,7 +386,7 @@
                                         <select name="groups" id="groups">
                                             {% for group in user_form.groups.field.queryset %}
                                                 <option value="{{ group.id }}"
-                                                        {% if group.id in user_form.groups.value %}selected{% endif %}>{{ group.name }}</option>
+                                            {% if group.id in user_form.groups.value %}selected{% endif %}>{{ group.name }}</option>
                                             {% endfor %}
                                         </select>
                                         {% if user_form.groups.errors %}
@@ -390,21 +397,34 @@
                                             </ul>
                                         {% endif %}
                                     </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0">Mobile</h6>
-                                        </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            <input type="text" class="form-control" value="(320) 380-4539">
-                                        </div>
-                                    </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">Address</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" class="form-control" value="Bay Area, San Francisco, CA">
+                                             <input type="text" class="form-control" name="address" id="address" value="{{ user_form.address.value }}">
+                                            {% if user_form.address.errors %}
+                                                <ul class="errorlist">
+                                                    {% for error in user_form.address.errors %}
+                                                        <li>{{ error }}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                        <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">created at </h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary is-valid">
+                                             <input  type="text" class="form-control is-valid" name="created_at" id="validationServer01" value="{{ user_form.created_at.value }}">
+                                            {% if user_form.created_at.errors %}
+                                                <ul class="errorlist">
+                                                    {% for error in user_form.created_at.errors %}
+                                                        <li>{{ error }}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            {% endif %}
                                         </div>
                                     </div>
                                     <div class="form-group">
