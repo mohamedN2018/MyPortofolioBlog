@@ -1,0 +1,14 @@
+<h1>Product List</h1>
+<ul>
+  {% for About_lists in About_list %}
+    <li>
+      <a href="{% url 'About_lists.about_list' product.pk %}">
+        {{ About_lists.about_list }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+
+
+
+

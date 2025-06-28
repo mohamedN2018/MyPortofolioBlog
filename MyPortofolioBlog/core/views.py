@@ -1,6 +1,19 @@
 from django.shortcuts import render
-
+from hero.models import Hero
+from accounts.models import Profile
+from about.models import About
 # Create your views here.
 
+app_name = 'core'
+
 def index(request):
-    return render(request, 'index.html')
+    heroes = Hero.objects.all()
+    abouts = About.objects.all()
+    profile = Profile.objects.all()
+    if request.user.is_authenticated:
+        try:
+            profile = Profile.objects.get(user=request.user)
+        except Profile.DoesNotExist:
+            profile = None
+            
+    return render(request, 'index.html', {'heroes': heroes, 'profile': profile, 'abouts': abouts})

@@ -1,0 +1,62 @@
+{% load static %}
+{% load i18n %}
+{% load custom_filters %}
+
+{% block content %}
+
+    <!-- Hero Section -->
+        <!-- About Section -->
+    <section id="about" class="about section">
+      {% for about in abouts %}
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>{{ about.about }}</h2>
+        <p>{{ about.description_about }}</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4 justify-content-center">
+          <div class="col-lg-4">
+            {% if about.images_about %}
+              <img src="{{ about.images_about.url }}" class="img-fluid" alt="">
+            {% else %}
+            <img src="{% static 'img/10.jpg' %}" alt="">
+            {% endif %}
+          </div>
+          <div class="col-lg-8 content">
+            <h2>{{ about.title_head_line }}</h2>
+            <p class="py-3">{{ about.description_main_about }}</p>
+            <div class="row">
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>{{ about.birthday_about }}</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span><a href="{{ about.website_link}}">{{ about.website_link|domain_name }}</a></span></li>
+                  
+
+                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+123 456 7890</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>New York, USA</span></li>
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>{{ about.age_about }}</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>{{ about.degree }}</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>email@example.com</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>{{ about.freelance_about }}</span></li>
+                </ul>
+              </div>
+            </div>
+            <p class="py-3">{{ about.description_bottom_about }}</p>
+            <a href="{% url "about_details" %}"> Show More >> </a>
+          </div>
+        </div>
+
+      </div>
+      {% endfor %}
+    </section>
+    <!-- /About Section -->
+
+
+
+  {% endblock %}

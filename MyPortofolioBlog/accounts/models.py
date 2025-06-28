@@ -9,15 +9,13 @@ from django.dispatch import receiver
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(blank=True, null=True)
-    profile_picture = models.ImageField(upload_to='media/profile_pictures/', blank=True, null=True)
+    profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
     phone = models.CharField(max_length=15, blank=True, null=True)
     address = models.CharField(max_length=255, blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    images = models.ImageField(upload_to='media/images/', blank=True, null=True)
     links = models.URLField(max_length=200, blank=True, null=True)
-    media = models.FileField(upload_to='media/', blank=True, null=True)
 
 
     def __str__(self):

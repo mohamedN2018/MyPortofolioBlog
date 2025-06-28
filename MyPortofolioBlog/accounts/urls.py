@@ -1,6 +1,9 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.auth.decorators import login_required
 
 app_name = 'accounts'
 
@@ -21,4 +24,5 @@ urlpatterns = [
     path('profile/edit/', views.profile_edit, name='profile_edit'),
     path('profile/', views.profile, name='profile'),
     path('profile/edit/profile', views.profile_edit, name='profile_edit'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

@@ -4,9 +4,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 from .models import Profile
+from hero.models import Hero
 
-
+@login_required(login_url='/accounts/login/')
 def index(request):
+    heroes = Hero.objects.all()
     if not request.user.is_authenticated:
         return render(request, 'profile/profile_not_found.html', {'error': 'Profile not found'})
     try:
@@ -14,10 +16,11 @@ def index(request):
     except Profile.DoesNotExist:
         return render(request, 'profile/profile_not_found.html', {'error': 'Profile not found'})
     # Render the profile page
-    return render(request, 'index/profile.html', {'profile': profile})
+    return render(request, 'index/profile.html', {'profile': profile, 'heroes': heroes})
 
-
+@login_required(login_url='/accounts/login/')
 def profile(request):
+    heroes = Hero.objects.all()
     if not request.user.is_authenticated:
         return render(request, 'profile/profile_not_found.html', {'error': 'Profile not found'})
     try:
@@ -25,9 +28,9 @@ def profile(request):
     except Profile.DoesNotExist:
         return render(request, 'profile/profile_not_found.html', {'error': 'Profile not found'})
     # Render the profile page
-    return render(request, 'profile/profile.html', {'profile': profile})
+    return render(request, 'profile/profile.html', {'profile': profile, 'heroes': heroes})
 
-
+@login_required(login_url='/accounts/login/')
 def profile_edit(request):
     profile = Profile.objects.get(user=request.user)
     if request.method == 'POST':
@@ -52,7 +55,7 @@ def profile_edit(request):
     })
 
 
-@login_required
+@login_required(login_url='/accounts/login/')
 def login_view(request):
     """
     Render the login page.

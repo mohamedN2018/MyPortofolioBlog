@@ -1,0 +1,60 @@
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+{% include "parts/navbar.html" %}
+{% include "about/header.html" %}
+
+    <h1>About List</h1>
+
+
+    <ul>
+        {% for About_list in data_list %}
+            <li>
+                <a href="#" class="about-link" data-slug="{{ data_list.slug }}">
+                    {{ data_list.about_list }}
+                </a>
+            </li>
+        {% endfor %}
+
+    <a href="{% url 'about_details' %}">Back to List</a>
+    </ul>
+
+    <div id="detail">
+        <!-- التفاصيل ستظهر هنا -->
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $(".about-link").click(function(e){
+                e.preventDefault();
+
+                var slug = $(this).data('slug');
+
+                $.ajax({
+                    url: '/about/' + slug + '/',
+                    type: 'GET',
+                    success: function(data){
+                        $("#detail").html(data);
+                    }
+                });
+            });
+        });
+    </script>
+
+
+
+
+
+
+{% include "parts/footer.html" %}
+
+</body>
+</html>
+{% endblock %}
+
+
+
+
+
