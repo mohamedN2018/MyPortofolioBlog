@@ -29,6 +29,8 @@ class About(models.Model):
 
 class About_list(models.Model):
     about_list = models.CharField(max_length=255, blank=True, null=True)
+    title_about = models.CharField(max_length=255, blank=True, null=True)
+    images_about_list = models.ImageField(upload_to='list/', blank=True, null=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
     description_list = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -40,3 +42,19 @@ class About_list(models.Model):
     class Meta:
         verbose_name = 'About List'
         verbose_name_plural = 'About Lists'
+
+
+
+class downloadcv(models.Model):
+    title_down = models.CharField(max_length=255, blank=True, null=True)
+    name_down = models.CharField(max_length=255, blank=True, null=True)
+    file = models.FileField(upload_to='files/', blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name_down
+
+    class Meta:
+        verbose_name = 'Download'
+        verbose_name_plural = 'Downloads'

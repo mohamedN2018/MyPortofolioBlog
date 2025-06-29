@@ -2,7 +2,6 @@
 {% load i18n %}
 
 {% block content %}
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,26 +27,21 @@
     <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
     <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
     <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
-
 </head>
-
-<body class="service-details-page">
-  <main class="main">
 
     <!-- Page Title -->
     <div class="page-title" data-aos="fade">
       <div class="container">
         <nav class="breadcrumbs">
           <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">Service Details</li>
+            <li><a class="text-decoration-none" href="{% url 'index' %}">Home</a></li>
+            <li class="current"><a class="text-decoration-none" href="{% url 'about_details' %}">About Details</a></li>
+              <li class="current"><a class="text-decoration-none">{{ about_details.slug }}</a></li>
           </ol>
         </nav>
-        <h1>Service Details</h1>
+        <h1>About Details</h1>
       </div>
     </div><!-- End Page Title -->
-
-
 
 
 
@@ -69,7 +63,4 @@
   <script src="{% static 'js/js.js' %}"></script>
 
 
-</body>
-
-</html>
 {% endblock %}

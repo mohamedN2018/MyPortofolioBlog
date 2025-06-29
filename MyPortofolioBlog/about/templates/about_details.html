@@ -41,53 +41,23 @@
 
   <main class="main">
   {% include "parts/navbar.html" %}
-  {% include "about/header.html" %}
-
+  {% include "about/header_details.html" %}
     <!-- Service Details Section -->
     <section id="service-details" class="service-details section">
       <div class="container">
-        <div class="row">
-          <div class="col-4 gy-5">
-            <div class="col-lg-4 w-100" data-aos="fade-up" data-aos-delay="100">
-                <div class="service-box">
-                  <h4>About List</h4>
-                  <div class="services-list">
-                    <ul>
-                  {% for About_list in data_list %}
-                      <a href="{% url 'About_list_details' About_list.slug %}" 
-                        data-slug="{{ About_list.slug }}" 
-                        class="active">
-                          <i class="bi bi-arrow-right-circle"></i>
-                          <span>{{ About_list.about_list }}</span>
-                      </a>
-                  {% endfor %}
-                  </div>
-                </div><!-- End Services List -->
-
-                <div class="service-box">
-                  <h4>Download Catalog</h4>
-                  <div class="download-catalog">
-                    <a href="#"><i class="bi bi-filetype-pdf"></i><span>Catalog PDF</span></a>
-                    <a href="#"><i class="bi bi-file-earmark-word"></i><span>Catalog DOC</span></a>
-                  </div>
-                </div><!-- End Services List -->
-
-                <div class="help-box d-flex flex-column justify-content-center align-items-center">
-                  <i class="bi bi-headset help-icon"></i>
-                  <h4>Have a Question?</h4>
-                  <p class="d-flex align-items-center mt-2 mb-0"><i class="bi bi-telephone me-2"></i> <span>+1 5589 55488 55</span></p>
-                  <p class="d-flex align-items-center mt-1 mb-0"><i class="bi bi-envelope me-2"></i> <a href="mailto:contact@example.com">contact@example.com</a></p>
-                </div>
-
-          </div>
-        </div>
+       {% include "about/about_list.html" %}
         <div class="col-8 gy-5">
           {% for About_list in data_list %}
-          <div class="col-lg-8 w-100 ps-lg-5" data-aos="fade-up" data-aos-delay="200">
-            <img src="assets/img/services.jpg" alt="" class="img-fluid services-img">
-            <h3><a href="{% url 'About_list_details' About_list.slug %}">{{ About_list.about_list }}</a></h3>
-            <h3>Temporibus et in vero dicta aut eius lidero plastis trand lined voluptas dolorem ut voluptas</h3>
-
+             <div class="service-box">
+               <div class="col-lg-8 w-100 ps-lg-5" data-aos="fade-up" data-aos-delay="200">
+                  <h3><a class="text-decoration-none" href="{% url 'About_list_details' About_list.slug %}">{{ About_list.about_list }}</a><hr></h3>
+                    {% if About_list.images_about_list %}
+                        <img src="{{ About_list.images_about_list.url }}" alt="Profile Image" class="img-fluid services-img">
+                    {% else %}
+                        <img src="{% static 'default_profile.jpg' %}" alt="Default Profile Image"  class="img-fluid services-img">
+                    {% endif %}
+              </div>
+            <h3>{{ About_list.title_about }}</h3>
             <p>{{ About_list.description_list }}</p>
             <ul>
               <li><i class="bi bi-check-circle"></i> <span>Aut eum totam accusantium voluptatem.</span></li>

@@ -18,4 +18,5 @@ urlpatterns = [
     path('', views.About_list, name='About_list'),
     path('about_details', views.about_details, name='about_details'),
     path('about_details/<slug:slug>/', views.About_list_details, name='About_list_details'),
+    path('online_cv', views.online_cv, name='online_cv'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,14 +1,42 @@
-<h1>Product List</h1>
-<ul>
-  {% for About_lists in About_list %}
-    <li>
-      <a href="{% url 'About_lists.about_list' product.pk %}">
-        {{ About_lists.about_list }}
-      </a>
-    </li>
-  {% endfor %}
-</ul>
+        <div class="row">
+          <div class="col-4 gy-5">
+            <div class="col-lg-4 w-100" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-box">
+                  <h4>About List</h4>
+                  <div class="services-list">
+                    <ul>
+                  {% for About_list in data_list %}
+                      <a class="text-decoration-none" href="{% url 'About_list_details' About_list.slug %}" 
+                        data-slug="{{ About_list.slug }}" 
+                        class="active">
+                          <i class="bi bi-arrow-right-circle"></i>
+                          <span>{{ About_list.about_list }}</span>
+                      </a>
+                  {% endfor %}
+                  </div>
+                </div><!-- End Services List -->
 
+                <div class="service-box">
+                      <h4>Download Catalog</h4>
+                  {% for downloadcv in down_cv %}
+                  <h4>{{ down_cv.name_down }}</h4>
+                  <div class="download-catalog">
+                    <a href="{{ downloadcv.file.url }}" download="{{ downloadcv.file.url }}"><i class="bi bi-filetype-pdf"></i><span>{{ downloadcv.name_down }} </span></a>
+                    <a href="{% url 'online_cv' %}"><i class="bi bi-file-earmark-word"></i><span>Cv Online</span></a>
+                  </div>
+                   {% empty %}
+                    <div class="service-box">
+                    <h1> no file </h1>
+                    </div>
+                  {% endfor %}
+                </div><!-- End Services List -->
 
+                <div class="help-box d-flex flex-column justify-content-center align-items-center">
+                  <i class="bi bi-headset help-icon"></i>
+                  <h4>Have a Question?</h4>
+                  <p class="d-flex align-items-center mt-2 mb-0"><i class="bi bi-telephone me-2"></i> <span>+1 5589 55488 55</span></p>
+                  <p class="d-flex align-items-center mt-1 mb-0"><i class="bi bi-envelope me-2"></i> <a href="mailto:contact@example.com">contact@example.com</a></p>
+                </div>
 
-
+          </div>
+        </div>
