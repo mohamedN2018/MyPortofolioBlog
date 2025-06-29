@@ -38,15 +38,14 @@ urlpatterns = i18n_patterns(
     path('i18n/setlang/', set_language, name='set_language'),
     path('admin/', admin.site.urls),
     path('', include('core.urls')),  # Include the portfolio app URLs
-    path('hero/', include('hero.urls')),  # Include the portfolio app URLs
+    path('/', include('hero.urls')),  # Include the portfolio app URLs
     path('about/', include('about.urls')),  # Include the portfolio app URLs
+    path('/', include('stats.urls')),  # Include the portfolio app URLs
                             
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 
-    # path('hero/', include('hero.urls')),  # Include the portfolio app URLs
-    # path('about/', include('about.urls')),  # Include the portfolio app URLs
     # path('resume/', include('resume.urls')),  # Include the portfolio app URLs
     # path('portfolio/', include('portfolio.urls')),  # Include the portfolio app URLs
     # path('services/', include('services.urls')),  # Include the portfolio app URLs

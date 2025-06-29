@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'core',        # Core app for shared functionality
     'hero',        # Custom app for hero section
     'about',       # Custom app for the about page
+    'stats',
     'resume',
     'portfolio',   # Custom app for the portfolio blog
     'services',    # Custom app for services section
