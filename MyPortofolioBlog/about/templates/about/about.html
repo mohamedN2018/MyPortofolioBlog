@@ -10,7 +10,7 @@
       {% for about in abouts %}
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>{{ about.about }}</h2>
+        <h2><a class="text-decoration-none link-secondary" href="{% url "about_details" %}" type="hidden"> {{ about.about }} </a> </h2>
         <p>{{ about.description_about }}</p>
       </div><!-- End Section Title -->
 

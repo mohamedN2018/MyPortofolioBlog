@@ -1,0 +1,42 @@
+<!-- Resume Section -->
+<section id="resume" class="resume section">
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+    {% for resume in my_resume %}
+    <h2>{{ resume.title_resume }}</h2>
+    <p>{{ resume.description_resume }}</p>
+    {% endfor %}
+</div><!-- End Section Title -->
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+        {% for resume_list_one in my_resume_list_one %}
+        <h3 class="resume-title">{{ resume_list_one.title_main_resume_list_one }}</h3>
+        <div class="resume-item pb-0">
+            <h4>{{ resume_list_one.title_resume_list_one }}</h4>
+        <h5>{{ resume_list_one.time_Current_resume_list_one }} - {{ resume_list_one.time_End_resume_list_one }}</h5>
+            <p><em>{{ resume_list_one.location_resume_list_one}}</em></p>
+            <p><em>{{ resume_list_one.description_resume_list_one }}</em></p>
+            <ul>
+            <li>{{ resume_list_one.description_list_resume_one }}</li>
+            </ul> 
+        </div><!-- Edn Resume Item -->
+        {% endfor %}
+        </div>
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+        {% for resume_list_tow in my_resume_list_two %}
+        <h3 class="resume-title">{{ resume_list_tow.title_main_resume_list_tow }}</h3>
+        <div class="resume-item">
+            <h4>{{ resume_list_tow.title_resume_list_tow }}</h4>
+            <h5>{{ resume_list_tow.time_Current_resume_list_tow }} - {{ resume_list_tow.time_End_resume_list_tow }}</h5>
+            <p><em>{{ resume_list_tow.location_resume_list_tow}}</em></p>
+            <p><em>{{ resume_list_tow.description_resume_list_tow }}</em></p>
+            <ul>
+            <li>{{ resume_list_tow.description_list_resume_tow }}</li>
+            </ul>
+        </div><!-- Edn Resume Item -->
+        {% endfor %}
+        </div>
+    </div>
+    </div>
+</section><!-- /Resume Section -->

@@ -30,12 +30,10 @@
         <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
         <style>
             @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap);
-
             body {
                 background: #f7f7ff;
                 margin-top: 20px;
             }
-
             .card {
                 position: relative;
                 display: flex;
@@ -53,9 +51,7 @@
             .me-2 {
                 margin-right: .5rem !important;
             }
-
             @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap);
-
             .profile-container {
                 max-width: 500px;
                 margin: 30px auto;
@@ -65,7 +61,6 @@
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
                 text-align: center;
             }
-
             .profile-img {
                 width: 120px;
                 height: 120px;
@@ -74,18 +69,14 @@
                 border: 3px solid #4a90e2;
                 margin-bottom: 15px;
             }
-
             .profile-field {
                 margin: 10px 0;
                 font-size: 1.1em;
             }
-
             .profile-label {
                 font-weight: bold;
                 color: #333;
             }
-
-
         </style>
     </head>
     <body>
@@ -100,7 +91,7 @@
                             <div class="d-flex flex-column align-items-center text-center">
                                 <img src="{{ profile.profile_picture.url }}" alt="Admin"
                                      class="rounded-circle p-1 bg-primary" width="110">
-                                {% if user.profile.profile_picture.url.imges %}
+                                {% if profile.profile_picture.url.imges %}
                                     <img src="{{ profile.profile_picture.url }}" alt="Admin"
                                          class="rounded-circle p-1 bg-primary" width="110">
                                 {% else %}

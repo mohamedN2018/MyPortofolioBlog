@@ -7,8 +7,6 @@ nameapp = 'portfolio'
 # the home page, about page, projects page, and contact page.
     
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('about/', views.about, name='about'),
-    path('projects/', views.projects, name='projects'),
-    path('contact/', views.contact, name='contact'),
+    path('', views.home_portfolio, name='home_portfolio'),
+    path('<slug:slug>/', views.view_card_portfolio, name='view_card_portfolio'),
 ]

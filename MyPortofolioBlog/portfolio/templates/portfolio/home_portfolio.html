@@ -1,0 +1,261 @@
+{% load static %}
+{% load url_replace %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>EShopper - Bootstrap Shop Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'portfolio/css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+{% include "parts/navbar.html" %}
+{% include "portfolio/header_porto.html" %}
+
+<!-- Shop Start -->
+<div class="container-fluid pt-5">
+    <div class="row px-xl-5">
+        <!-- Shop Sidebar Start -->
+        <div class="col-lg-3 col-md-12">
+          
+            <!-- Category Filter -->
+            <div class="border-bottom mb-4 pb-4">
+                <form method="get">
+                    <h5 class="font-weight-semi-bold mb-4">Filter by category</h5>
+                    <div class="form-group">
+                        <select name="category" class="form-control" onchange="this.form.submit()">
+                            <option value="">All Categories</option> 
+                            {% for category in categories %}
+                            <option value="{{ category.slug }}" {% if request.GET.category == category.slug %}selected{% endif %}>
+                                {{ category.name_caregory }}
+                            </option> 
+                            {% endfor %}
+                        </select>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Status Filter -->
+            <div class="border-bottom mb-4 pb-4">
+                <form method="get">
+                    <h5 class="font-weight-semi-bold mb-4">Filter by status</h5>
+                    <div class="form-group">
+                        <select name="status" class="form-control" onchange="this.form.submit()">
+                            <option value="">All Status</option>
+                            <option value="active" {% if request.GET.status == 'active' %}selected{% endif %}>Active</option>
+                            <option value="archived" {% if request.GET.status == 'archived' %}selected{% endif %}>Archived</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Shop Sidebar End -->
+
+        <!-- Shop Product Start -->
+        <div class="col-lg-9 col-md-12">
+            <div class="row pb-3">
+                <div class="col-12 pb-1">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <form method="get" action="" class="w-75">
+                            <div class="input-group">
+                                <input type="text" name="search" class="form-control" 
+                                       placeholder="Search by name" value="{{ request.GET.search }}">
+                                <input type="hidden" name="category" value="{{ request.GET.category }}">
+                                <input type="hidden" name="status" value="{{ request.GET.status }}">
+                                <input type="hidden" name="price" value="{{ request.GET.price }}">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="dropdown ml-4">
+                            <button class="btn border dropdown-toggle" type="button" id="sortDropdown" 
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Sort by {% if request.GET.sort %}({{ request.GET.sort|title }}){% endif %}
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sortDropdown">
+                        {% with request.GET.urlencode as query_params %}
+                            <a class="dropdown-item" href="?{% if query_params %}{{ query_params|url_replace:'sort=latest' }}{% else %}sort=latest{% endif %}">Latest (created_at desc)</a>
+                            <a class="dropdown-item" href="?{% if query_params %}{{ query_params|url_replace:'sort=updated' }}{% else %}sort=updated{% endif %}">Recently Updated (updated_at desc)</a>
+                            <a class="dropdown-item" href="?{% if query_params %}{{ query_params|url_replace:'sort=rating' }}{% else %}sort=rating{% endif %}">Best Rating</a>
+                            <a class="dropdown-item" href="?{% if query_params %}{{ query_params|url_replace:'sort=minimum_price' }}{% else %}sort=minimum_price{% endif %}">Price: Low to High</a>
+                        {% endwith %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                        {% for Project in projects %}
+                        <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                            <div class="card product-item border-0 mb-4">
+                                <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                    {% if Project.image %}
+                                            <img class="img-fluid w-100" src="{{ Project.image.url }}" alt="">
+                                        {% else %}
+                                            <img class="img-fluid w-100" src="{% static 'img/bac6.png' %}" alt="">
+                                        {% endif %}
+                                </div>
+                                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                    <h6 class="text-truncate mb-3">{{ Project.name_project }}</h6>
+
+
+                                     <div class="d-flex mb-3 justify-content-center">
+                                        <div class="text-primary mr-2">
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star-half-alt"></small>
+                                            <small class="far fa-star"></small>
+                                            <small class="pt-1">({{ Project.rating }})</small>
+                                        </div>
+                                        <small class="pt-1">(50 Reviews)</small>
+                                    </div>
+
+
+                                    <div class="d-flex justify-content-center">
+                                        {% if Project %}                                    
+                                            <h6>Category : {{ Project.category }}</h6>
+                                            {% else %}
+                                                <h6>not list</h6>
+                                        {% endif %}
+                                    </div>
+
+                                </div>
+                                <div class="card-footer d-flex justify-content-between bg-light border">
+                                    <a href="{% url "view_card_portfolio" Project.slug  %}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                    <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                <div class="col-12 pb-1">
+                    <nav aria-label="Page navigation">
+                         <ul class="pagination justify-content-center mb-3">
+                            {% if projects.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page=1" aria-label="First">
+                                        <span aria-hidden="true">&laquo;&laquo;</span>
+                                        <span class="sr-only">First</span>
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ projects.previous_page_number }}" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                            {% for num in projects.paginator.page_range %}
+                                {% if projects.number == num %}
+                                    <li class="page-item active">
+                                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+
+                            {% if projects.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ projects.next_page_number }}" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ projects.paginator.num_pages }}" aria-label="Last">
+                                        <span aria-hidden="true">&raquo;&raquo;</span>
+                                        <span class="sr-only">Last</span>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                           </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- Shop Product End -->
+    </div>
+</div>
+<!-- Shop End -->
+
+{% include "parts/footer.html" %}
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="{% static 'portfolio/js/main.js' %}"></script>
+
+<!-- Custom Script for Filters -->
+<script>
+// Maintain filter state when paginating
+$(document).ready(function() {
+    $('.page-link').each(function() {
+        var href = $(this).attr('href');
+        if (href) {
+            // Add existing filters to pagination links
+            var params = new URLSearchParams(window.location.search);
+            params.delete('page');
+            var existingParams = params.toString();
+            
+            if (href.indexOf('?') === -1) {
+                href += '?' + existingParams;
+            } else {
+                href += '&' + existingParams;
+            }
+            $(this).attr('href', href);
+        }
+    });
+});
+</script>
+
+</body>
+</html>

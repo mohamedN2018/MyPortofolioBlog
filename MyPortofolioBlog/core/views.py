@@ -3,6 +3,10 @@ from hero.models import Hero
 from accounts.models import Profile
 from about.models import About
 from stats.models import Stats
+from skils.models import skils, skils_main, skils_tow
+from resume.models import resume, resume_list_one, resume_list_two, list_one, list_tow
+from portfolio.models import Project, Category, main_page
+from services.models import Services_list, Services_main
 # Create your views here.
 
 app_name = 'core'
@@ -10,7 +14,33 @@ app_name = 'core'
 def index(request):
     heroes = Hero.objects.all()
     my_stats = Stats.objects.all()
+    my_skils = skils.objects.all()
+    my_skils_tow = skils_tow.objects.all()
+    main_skils = skils_main.objects.all()
     abouts = About.objects.all()
+    projects = Project.objects.all().order_by('-created_at')[:6]
+
+    my_resume = resume.objects.all()
+    my_resume_list_one = resume_list_one.objects.all()
+    my_list_one = list_one.objects.all()
+    my_resume_list_two = resume_list_two.objects.all()
+    my_list_tow = list_tow.objects.all()
+
+    my_Services_main = Services_main.objects.all()
+    my_Services_list = Services_list.objects.all()
+
+
+    my_main_page = main_page.objects.all()
+    # Pass categories to template for the dropdown list
+    categories = Category.objects.all()
+    categorys = Category.objects.values_list('name_caregory', flat=True)
+
+     # Filter by category slug if provided (assuming category foreign key named 'category' and Category has 'slug')
+    category_slug = request.GET.get('category')
+    if category_slug:
+        projects = projects.filter(category__slug=category_slug)
+
+
     profile = Profile.objects.all()
     if request.user.is_authenticated:
         try:
@@ -18,4 +48,11 @@ def index(request):
         except Profile.DoesNotExist:
             profile = None
             
-    return render(request, 'index.html', {'heroes': heroes, 'profile': profile, 'abouts': abouts, 'my_stats': my_stats})
+    return render(request, 'index.html', 
+                  {
+                      'heroes': heroes, 'profile': profile, 'abouts': abouts, 'my_stats': my_stats, 'my_skils': my_skils,
+                      'main_skils': main_skils, 'my_skils_tow': my_skils_tow,
+                      'my_resume': my_resume, 'my_resume_list_one': my_resume_list_one, 'my_list_one': my_list_one, 
+                      'my_resume_list_two': my_resume_list_two, 'my_list_tow': my_list_tow, 'projects': projects,
+                      'categorys': categorys, 'categories': categories, 'my_main_page': my_main_page, 'my_Services_main': my_Services_main, 'my_Services_list': my_Services_list
+                      })

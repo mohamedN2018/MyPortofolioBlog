@@ -1,0 +1,36 @@
+    <!-- Skills Section -->
+    <section id="skills" class="skills section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        {% for skils_main in main_skils %}
+        <h2>{{ skils_main.main_title }}</h2>
+        <p>{{ skils_main.description_skils }}</p>
+        {% endfor %}
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row skills-content skills-animation">
+          <div class="col-lg-6">
+            {% for skils in my_skils %}
+            <div class="progress">
+              <span class="skill"><span>{{ skils.title_skils }}</span> <i class="val">{{ skils.aria_valuenow }}%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="{{ skils.aria_valuenow }}" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div><!-- End Skills Item -->
+            {% endfor %}
+          </div>
+          <div class="col-lg-6">
+            {% for skils_tow in my_skils_tow %}
+            <div class="progress">
+              <span class="skill"><span>{{ skils_tow.title_skils }}</span> <i class="val">{{ skils_tow.aria_valuenow }}%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="{{ skils_tow.aria_valuenow }}" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div><!-- End Skills Item -->
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section><!-- /Skills Section -->

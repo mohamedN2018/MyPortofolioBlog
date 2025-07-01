@@ -46,11 +46,14 @@ INSTALLED_APPS = [
     'hero',        # Custom app for hero section
     'about',       # Custom app for the about page
     'stats',
+    'skils',
     'resume',
     'portfolio',   # Custom app for the portfolio blog
     'services',    # Custom app for services section
     'testimonials',  # Custom app for testimonials section
     'contact',     # Custom app for contact form
+    'django_filters'
+
 ]
 
 MIDDLEWARE = [
