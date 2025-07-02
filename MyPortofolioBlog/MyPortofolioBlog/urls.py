@@ -43,7 +43,8 @@ urlpatterns = i18n_patterns(
     path('/', include('stats.urls')),  # Include the portfolio app URLs
     path('/', include('skils.urls')),  # Include the portfolio app URLs  
     path('portfolio/', include('portfolio.urls')),  # Include the portfolio app URLs    
-    path('services/', include('services.urls')),  # Include the portfolio app URLs              
+    path('services/', include('services.urls')),  # Include the portfolio app URLs     
+    path('testimonials/', include('testimonials.urls')),  # Include the portfolio app URLs         
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

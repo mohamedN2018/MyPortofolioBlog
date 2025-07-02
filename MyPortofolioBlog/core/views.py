@@ -7,6 +7,7 @@ from skils.models import skils, skils_main, skils_tow
 from resume.models import resume, resume_list_one, resume_list_two, list_one, list_tow
 from portfolio.models import Project, Category, main_page
 from services.models import Services_list, Services_main
+from testimonials.models import Testimonials, Testimonials_main
 # Create your views here.
 
 app_name = 'core'
@@ -48,11 +49,19 @@ def index(request):
         except Profile.DoesNotExist:
             profile = None
             
-    return render(request, 'index.html', 
-                  {
-                      'heroes': heroes, 'profile': profile, 'abouts': abouts, 'my_stats': my_stats, 'my_skils': my_skils,
-                      'main_skils': main_skils, 'my_skils_tow': my_skils_tow,
-                      'my_resume': my_resume, 'my_resume_list_one': my_resume_list_one, 'my_list_one': my_list_one, 
-                      'my_resume_list_two': my_resume_list_two, 'my_list_tow': my_list_tow, 'projects': projects,
-                      'categorys': categorys, 'categories': categories, 'my_main_page': my_main_page, 'my_Services_main': my_Services_main, 'my_Services_list': my_Services_list
-                      })
+
+    my_Testimonials_main = Testimonials_main.objects.all()
+    my_Testimonials = Testimonials.objects.all()
+    contex = {
+        'my_Testimonials_main': my_Testimonials_main, 'my_Testimonials': my_Testimonials, 
+        'heroes': heroes, 'profile': profile, 'abouts': abouts, 'my_stats': my_stats, 'my_skils': my_skils,
+        'main_skils': main_skils, 'my_skils_tow': my_skils_tow,
+        'my_resume': my_resume, 'my_resume_list_one': my_resume_list_one, 'my_list_one': my_list_one, 
+        'my_resume_list_two': my_resume_list_two, 'my_list_tow': my_list_tow, 'projects': projects,
+        'categorys': categorys, 'categories': categories, 'my_main_page': my_main_page, 'my_Services_main': my_Services_main, 'my_Services_list': my_Services_list
+    }
+
+
+
+    return render(request, 'index.html', context=contex)
+                  
