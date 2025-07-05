@@ -292,6 +292,22 @@
           {{ field.label_tag }}
            {{ field }}
          <div class="input-box">
+
+          <div class="input-box">
+            <td>{{ form.profile_picture.label_tag }}</td>
+                <div class="form-group">
+                    <label for="profile_picture">Profile Image:</label>
+                    <input type="file" name="profile_picture" id="profile_picture">
+                    {% if profile_form.profile_picture.errors %}
+                        <ul class="errorlist">
+                            {% for error in profile_form.profile_picture.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+          </div>
+
             {% comment %} <input type="text" placeholder="Username" required /> {% endcomment %}
             <td>{{ form.username.label_tag }}</td>
             <td type="text" placeholder="Username">{{ form.username }}</td>
@@ -316,6 +332,9 @@
             <td type="password" placeholder="password">{{ form.password2 }}</td>
             <i class="bx bxs-lock-alt"></i>
           </div>
+
+  
+
             {% if field.errors %}
           <ul class="errorlist">
             {% for error in field.errors %}
@@ -328,13 +347,13 @@
         {{ hidden }}
          {% endfor %}
           <button type="submit" class="btn btn-primary">Register</button>
-          <p>or register with social platforms</p>
+          {% comment %} <p>or register with social platforms</p>
           <div class="social-icons">
             <a href="#"><i class="bi bi-google"></i></a>
             <a href="#"><i class="bi bi-facebook"></i></a>
             <a href="#"><i class="bi bi-github"></i></a>
             <a href="#"><i class="bi bi-linkedin"></i></a>
-          </div>
+          </div> {% endcomment %}
         <input type="hidden"name="next" value="{{ next|default_if_none:'' }}"/>
             <input type="hidden" name="redirect_field_name" value="{{ redirect_field_name|default:'next' }}"/>
 

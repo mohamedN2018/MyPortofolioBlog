@@ -8,26 +8,36 @@ from accounts.models import Profile
 
 appname = "services"
 
-def Services_list_view(reuquest):
+def Services_list_view(request):
     my_Services_main = Services_main.objects.all()
     my_Services_list = Services_list.objects.all()
     heroes = Hero.objects.all()
     profile = Profile.objects.all()
-    
-    return render(reuquest, 'services/services_home.html', {
+    if request.user.is_authenticated:
+        try:
+            profile = Profile.objects.get(user=request.user)
+        except Profile.DoesNotExist:
+            profile = None
+
+    return render(request, 'services/services_home.html', {
         'heroes': heroes, 'profile': profile, 'my_Services_main': my_Services_main, 'my_Services_list': my_Services_list
     })
 
 
-def services_details(reuquest, slug):
+def services_details(request, slug):
     heroes = Hero.objects.all()
     profile = Profile.objects.all()
+    if request.user.is_authenticated:
+        try:
+            profile = Profile.objects.get(user=request.user)
+        except Profile.DoesNotExist:
+            profile = None
     my_Services_list = Services_list.objects.all()
     my_Services_main = Services_main.objects.all()
 
     services_details = get_object_or_404(Services_list, slug=slug)
 
-    return render(reuquest, 'services/services_details.html', {
+    return render(request, 'services/services_details.html', {
         'services_details': services_details, 'heroes': heroes, 'profile': profile, 'my_Services_list': my_Services_list, 'my_Services_main': my_Services_main
         })
 

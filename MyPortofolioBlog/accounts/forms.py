@@ -1,9 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
-from.models import Profile
 from django.utils.translation import gettext_lazy as _
+from .models import Profile
 
 class SignupForm(UserCreationForm):
     class Meta:
@@ -14,6 +13,7 @@ class SignupForm(UserCreationForm):
             'email': _('Email Address'),
             'password1': _('Password'),
             'password2': _('Confirm Password'),
+            'profile_picture': _('Profile Picture'),
         }
         help_texts = {
             'username': _('Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.'),
@@ -28,6 +28,8 @@ class SignupForm(UserCreationForm):
                 'unique': _("This email address is already in use."),
             },
         }
+
+
 class ProfileForm(UserChangeForm):
     class Meta:
         model = User

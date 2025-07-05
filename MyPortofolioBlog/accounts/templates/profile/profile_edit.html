@@ -89,18 +89,18 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                <img src="{{ profile.profile_picture.url }}" alt="Admin"
-                                     class="rounded-circle p-1 bg-primary" width="110">
-                                {% if profile.profile_picture.url.imges %}
+                                {% if profile.profile_picture %}
                                     <img src="{{ profile.profile_picture.url }}" alt="Admin"
-                                         class="rounded-circle p-1 bg-primary" width="110">
+                                        class="rounded-circle p-1 bg-primary" width="110">
                                 {% else %}
                                     <img src="{% static 'default_profile.jpg' %}" alt="Default Profile Image"
-                                         class="profile-img">
+                                        class="profile-img">
                                 {% endif %}
+
                                 <h4>{{ user.first_name }} {{ user.last_name }}</h4>
                                 <p class="text-secondary mb-1">Full Stack Developer</p>
-                                {% if user.profile.bio %}
+
+                                {% if user.profile and user.profile.bio %}
                                     <div class="profile-field">
                                         <span class="profile-label">Bio:</span> {{ user.profile.bio }}
                                     </div>
@@ -205,11 +205,13 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="profile_image">Profile Image:</label>
-                                        <input type="file" name="profile_image" id="profile_image">
-                                        {% if profile_form.profile_image.errors %}
+                                        <label for="{{ profile_form.profile_picture.id_for_label }}">Profile Image:</label>
+                                       <img src="{{ profile_form.profile_picture }}" alt="img"> 
+                                        <input type="file" name="profile_picture" id="profile_picture">
+
+                                        {% if profile_form.profile_picture.errors %}
                                             <ul class="errorlist">
-                                                {% for error in profile_form.profile_image.errors %}
+                                                {% for error in profile_form.profile_picture.errors %}
                                                     <li>{{ error }}</li>
                                                 {% endfor %}
                                             </ul>

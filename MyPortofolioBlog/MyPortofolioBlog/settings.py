@@ -15,6 +15,7 @@ import os
 from django.utils.translation import gettext_lazy as _
 
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -153,22 +154,28 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOSE_USER = 'mohamednabilpro2024@gmail.com'
+EMAIL_HOST_PASSWORD = 'key'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587 
 
 
 # Jazzmin settings
 JAZZMIN_SETTINGS = {
-    "site_title": "Library Admin",
-    "site_header": "Library",
-    "site_brand": "Library",
-    "site_logo": "books/img/logo.png",
-    "login_logo": None,
-    "login_logo_dark": None,
+    "site_title": "MohaMed",
+    "site_header": "MohaMed",
+    "site_brand": "MohaMed",
+    "site_logo": "media/images/011.jpg",
+    "login_logo": "media/images/011.jpg",
+    "login_logo_dark": "media/images/011.jpg",
     "site_logo_classes": "img-circle",
-    "site_icon": None,
+    "site_icon": "media/images/011.jpg",
     "welcome_sign": "Welcome to the library",
     "copyright": "Acme Library Ltd",
     "search_model": ["auth.User", "auth.Group"],
-    "user_avatar": None,
+    "user_avatar": "profile.profile_picture.url",
     "topmenu_links": [
         {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
         {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},

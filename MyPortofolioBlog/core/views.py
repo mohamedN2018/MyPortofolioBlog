@@ -8,6 +8,9 @@ from resume.models import resume, resume_list_one, resume_list_two, list_one, li
 from portfolio.models import Project, Category, main_page
 from services.models import Services_list, Services_main
 from testimonials.models import Testimonials, Testimonials_main
+from contact.models import Contact_Main
+from django.core.mail import send_mail
+
 # Create your views here.
 
 app_name = 'core'
@@ -50,6 +53,21 @@ def index(request):
             profile = None
             
 
+    my_contact_main = Contact_Main.objects.first()
+
+    if  request.method == 'POST':
+        subject = request.POST['subject']
+        email = request.POST['email']
+        message = request.POST['message']
+
+        send_mail(
+            subject,
+            message,
+            settings.EMAIL_HOST_USER,
+            [email],
+            fail_silently=False,
+        )     
+
     my_Testimonials_main = Testimonials_main.objects.all()
     my_Testimonials = Testimonials.objects.all()
     contex = {
@@ -57,7 +75,7 @@ def index(request):
         'heroes': heroes, 'profile': profile, 'abouts': abouts, 'my_stats': my_stats, 'my_skils': my_skils,
         'main_skils': main_skils, 'my_skils_tow': my_skils_tow,
         'my_resume': my_resume, 'my_resume_list_one': my_resume_list_one, 'my_list_one': my_list_one, 
-        'my_resume_list_two': my_resume_list_two, 'my_list_tow': my_list_tow, 'projects': projects,
+        'my_resume_list_two': my_resume_list_two, 'my_list_tow': my_list_tow, 'projects': projects, 'my_contact_main': my_contact_main,
         'categorys': categorys, 'categories': categories, 'my_main_page': my_main_page, 'my_Services_main': my_Services_main, 'my_Services_list': my_Services_list
     }
 

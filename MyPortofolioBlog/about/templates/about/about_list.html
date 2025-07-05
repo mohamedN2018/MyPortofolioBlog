@@ -21,8 +21,8 @@
                   {% for downloadcv in down_cv %}
                   <h4>{{ down_cv.name_down }}</h4>
                   <div class="download-catalog">
-                    <a href="{{ downloadcv.file.url }}" download="{{ downloadcv.file.url }}"><i class="bi bi-filetype-pdf"></i><span>{{ downloadcv.name_down }} </span></a>
-                    <a href="{% url 'online_cv' %}"><i class="bi bi-file-earmark-word"></i><span>Cv Online</span></a>
+                    <a class="text-decoration-none" href="{{ downloadcv.file.url }}" download="{{ downloadcv.file.url }}"><i class="bi bi-filetype-pdf"></i><span>{{ downloadcv.name_down }} </span></a>
+                    <a class="text-decoration-none" href="{% url 'online_cv' %}"><i class="bi bi-file-earmark-word"></i><span>Cv Online</span></a>
                   </div>
                    {% empty %}
                     <div class="service-box">

@@ -14,7 +14,11 @@ def home_portfolio(request):
 
     heroes = Hero.objects.all()
     profile = Profile.objects.all()
-    # Render the profile page
+    if request.user.is_authenticated:
+        try:
+            profile = Profile.objects.get(user=request.user)
+        except Profile.DoesNotExist:
+            profile = None    # Render the profile page
 
     # projects = Project.objects.order_by('-rating')
    # Base queryset
@@ -71,7 +75,11 @@ def home_portfolio(request):
 def view_card_portfolio(request, slug):
     heroes = Hero.objects.all()
     profile = Profile.objects.all()
-    # Render the profile page
+    if request.user.is_authenticated:
+        try:
+            profile = Profile.objects.get(user=request.user)
+        except Profile.DoesNotExist:
+            profile = None    # Render the profile page
     projects = get_object_or_404(Project, slug=slug)
     return render(request, 'portfolio/view_card_portfolio.html',
                   {

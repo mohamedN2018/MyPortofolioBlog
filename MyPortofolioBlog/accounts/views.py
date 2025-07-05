@@ -57,9 +57,7 @@ def profile_edit(request):
 
 @login_required(login_url='/accounts/login/')
 def login_view(request):
-    """
-    Render the login page.
-    """
+
     if request.method == 'POST':
         # Handle login logic here
         pass  # Replace with actual login logic
