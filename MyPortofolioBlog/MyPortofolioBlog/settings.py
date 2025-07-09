@@ -10,8 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
-from pathlib import Path
 import os
+from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 
 
@@ -61,7 +61,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',  # Ensure this is included for localization
-    # 'django.middleware.locale.LocaleMiddleware',  # Add this line for localization
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -122,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ar'
 
 TIME_ZONE = 'UTC'
 
@@ -130,10 +129,15 @@ USE_I18N = True
 
 USE_TZ = True
 
+
 LANGUAGES = [
-    ('en', _('English')),
     ('ar', _('Arabic')),
+    ('en', _('English')),
 ]
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
@@ -144,9 +148,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
     "/var/www/static/",
 ]
-
 MEDIA_URL = '/media/'
-
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 # Default primary key field type
@@ -167,11 +169,14 @@ JAZZMIN_SETTINGS = {
     "site_title": "MohaMed",
     "site_header": "MohaMed",
     "site_brand": "MohaMed",
-    "site_logo": "media/images/011.jpg",
-    "login_logo": "media/images/011.jpg",
-    "login_logo_dark": "media/images/011.jpg",
+    "site_logo": "/Logo_Site/011.jpg",
+    # "login_logo": "/Logo_Site/Artboard.png",
+    # "login_logo_dark": "/Logo_Site/Artboard.png",
+    "login_logo": "",
+    "login_logo_dark": "",
+
     "site_logo_classes": "img-circle",
-    "site_icon": "media/images/011.jpg",
+    "site_icon": "/Logo_Site/011.jpg",
     "welcome_sign": "Welcome to the library",
     "copyright": "Acme Library Ltd",
     "search_model": ["auth.User", "auth.Group"],

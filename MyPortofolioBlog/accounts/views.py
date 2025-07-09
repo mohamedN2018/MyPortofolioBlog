@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import SignupForm, UserForm, ProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from contact.models import social_media_icons
 # Create your views here.
 from .models import Profile
 from hero.models import Hero
@@ -9,6 +10,7 @@ from hero.models import Hero
 @login_required(login_url='/accounts/login/')
 def index(request):
     heroes = Hero.objects.all()
+    my_social_media_icons = social_media_icons.objects.all()
     if not request.user.is_authenticated:
         return render(request, 'profile/profile_not_found.html', {'error': 'Profile not found'})
     try:
@@ -16,11 +18,12 @@ def index(request):
     except Profile.DoesNotExist:
         return render(request, 'profile/profile_not_found.html', {'error': 'Profile not found'})
     # Render the profile page
-    return render(request, 'index/profile.html', {'profile': profile, 'heroes': heroes})
+    return render(request, 'index/profile.html', {'profile': profile, 'heroes': heroes, 'my_social_media_icons': my_social_media_icons})
 
 @login_required(login_url='/accounts/login/')
 def profile(request):
     heroes = Hero.objects.all()
+    my_social_media_icons = social_media_icons.objects.all()
     if not request.user.is_authenticated:
         return render(request, 'profile/profile_not_found.html', {'error': 'Profile not found'})
     try:
@@ -28,10 +31,12 @@ def profile(request):
     except Profile.DoesNotExist:
         return render(request, 'profile/profile_not_found.html', {'error': 'Profile not found'})
     # Render the profile page
-    return render(request, 'profile/profile.html', {'profile': profile, 'heroes': heroes})
+    return render(request, 'profile/profile.html', {'profile': profile, 'heroes': heroes, 'my_social_media_icons': my_social_media_icons})
 
 @login_required(login_url='/accounts/login/')
 def profile_edit(request):
+    my_social_media_icons = social_media_icons.objects.all()
+    heroes = Hero.objects.all()
     profile = Profile.objects.get(user=request.user)
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)
@@ -52,6 +57,8 @@ def profile_edit(request):
         'user_form': user_form,
         'profile_form': profile_form,
         'profile': profile,
+        'heroes': heroes,
+        'my_social_media_icons': my_social_media_icons,
     })
 
 

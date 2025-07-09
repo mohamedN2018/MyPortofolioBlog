@@ -32,3 +32,16 @@ class Contact_Main(models.Model):
         return self.cont_email
 
 
+
+class social_media_icons(models.Model):
+    icon_name = models.CharField(max_length=255, blank=True, null=True)
+    link = models.URLField(max_length=255, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = ("social media icons")
+        verbose_name_plural = ("social media icons")
+
+    def __str__(self):
+        return self.icon_name

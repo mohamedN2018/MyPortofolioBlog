@@ -8,8 +8,9 @@ from resume.models import resume, resume_list_one, resume_list_two, list_one, li
 from portfolio.models import Project, Category, main_page
 from services.models import Services_list, Services_main
 from testimonials.models import Testimonials, Testimonials_main
-from contact.models import Contact_Main
+from contact.models import Contact_Main, social_media_icons
 from django.core.mail import send_mail
+from django.utils.translation import gettext_lazy as _
 
 # Create your views here.
 
@@ -54,6 +55,7 @@ def index(request):
             
 
     my_contact_main = Contact_Main.objects.first()
+    my_social_media_icons = social_media_icons.objects.all()
 
     if  request.method == 'POST':
         subject = request.POST['subject']
@@ -76,7 +78,8 @@ def index(request):
         'main_skils': main_skils, 'my_skils_tow': my_skils_tow,
         'my_resume': my_resume, 'my_resume_list_one': my_resume_list_one, 'my_list_one': my_list_one, 
         'my_resume_list_two': my_resume_list_two, 'my_list_tow': my_list_tow, 'projects': projects, 'my_contact_main': my_contact_main,
-        'categorys': categorys, 'categories': categories, 'my_main_page': my_main_page, 'my_Services_main': my_Services_main, 'my_Services_list': my_Services_list
+        'categorys': categorys, 'categories': categories, 'my_main_page': my_main_page, 'my_Services_main': my_Services_main, 'my_Services_list': my_Services_list,
+        'my_social_media_icons': my_social_media_icons,
     }
 
 

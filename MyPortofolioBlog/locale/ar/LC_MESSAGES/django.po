@@ -1,0 +1,111 @@
+#: .\MyPortofolioBlog\settings.py:134
+msgid "Arabic"
+msgstr ""
+
+#: .\MyPortofolioBlog\settings.py:135
+msgid "English"
+msgstr ""
+
+#: .\accounts\forms.py:12 .\accounts\forms.py:39 .\accounts\forms.py:72
+msgid "Username"
+msgstr ""
+
+#: .\accounts\forms.py:13 .\accounts\forms.py:40 .\accounts\forms.py:73
+msgid "Email Address"
+msgstr ""
+
+#: .\accounts\forms.py:14
+msgid "Password"
+msgstr ""
+
+#: .\accounts\forms.py:15
+msgid "Confirm Password"
+msgstr ""
+
+#: .\accounts\forms.py:16
+msgid "Profile Picture"
+msgstr ""
+
+#: .\accounts\forms.py:19 .\accounts\forms.py:54 .\accounts\forms.py:78
+msgid "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+msgstr ""
+
+#: .\accounts\forms.py:20 .\accounts\forms.py:55 .\accounts\forms.py:79
+msgid "Required. Enter a valid email address."
+msgstr ""
+
+#: .\accounts\forms.py:24 .\accounts\forms.py:59 .\accounts\forms.py:83
+msgid "This username is too long."
+msgstr ""
+
+#: .\accounts\forms.py:25 .\accounts\forms.py:60 .\accounts\forms.py:84
+msgid "This username is already taken."
+msgstr ""
+
+#: .\accounts\forms.py:28 .\accounts\forms.py:63 .\accounts\forms.py:87
+msgid "This email address is already in use."
+msgstr ""
+
+#: .\accounts\forms.py:41 .\accounts\forms.py:74
+msgid "First Name"
+msgstr ""
+
+#: .\accounts\forms.py:42 .\accounts\forms.py:75
+msgid "Last Name"
+msgstr ""
+
+#: .\accounts\forms.py:43 .\accounts\forms.py:96
+msgid "Address"
+msgstr ""
+
+#: .\accounts\forms.py:44 .\accounts\forms.py:95
+msgid "Phone Number"
+msgstr ""
+
+#: .\accounts\forms.py:45 .\accounts\forms.py:97
+msgid "Date of Birth"
+msgstr ""
+
+#: .\accounts\forms.py:46
+msgid "Created At"
+msgstr ""
+
+#: .\accounts\forms.py:47
+msgid "Updated At"
+msgstr ""
+
+#: .\accounts\forms.py:48
+msgid "Images"
+msgstr ""
+
+#: .\accounts\forms.py:49
+msgid "Links"
+msgstr ""
+
+#: .\accounts\forms.py:50
+msgid "Media"
+msgstr ""
+
+#: .\accounts\forms.py:100 .\accounts\forms.py:106
+msgid "Enter a valid phone number."
+msgstr ""
+
+#: .\accounts\forms.py:101
+msgid "Enter your address."
+msgstr ""
+
+#: .\accounts\forms.py:102
+msgid "Enter your date of birth."
+msgstr ""
+
+#: .\accounts\forms.py:109
+msgid "This address is too long."
+msgstr ""
+
+#: .\portfolio\models.py:65
+msgid "Project"
+msgstr ""
+
+#: .\portfolio\models.py:66
+msgid "Projects"
+msgstr ""

@@ -32,6 +32,11 @@ def redirect_to_home(request, exception=None):
 
 handler404 = redirect_to_home
 
+urlpatterns = [
+    path('i18n/', include('django.conf.urls.i18n')),
+
+]
+
 urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
@@ -46,9 +51,9 @@ urlpatterns = i18n_patterns(
     path('services/', include('services.urls')),  # Include the portfolio app URLs     
     path('testimonials/', include('testimonials.urls')),  # Include the portfolio app URLs  
     path('contact/', include('contact.urls')),  # Include the portfolio app URLs       
-) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+) 
 
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-
-    # path('resume/', include('resume.urls')),  # Include the portfolio app URLs
-    # path('testimonials/', include('testimonials.urls')),  # Include the portfolio app URLs

@@ -5,13 +5,14 @@ from hero.models import Hero
 from accounts.models import Profile
 from django.core.paginator import Paginator
 from about.models import About
+from contact.models import social_media_icons
 # Create your views here.
 from .filters import ProjectFilter
 
 def home_portfolio(request):
     abouts = About.objects.all()
     projects = Project.objects.all().order_by('-created_at')[:6]
-
+    my_social_media_icons = social_media_icons.objects.all()
     heroes = Hero.objects.all()
     profile = Profile.objects.all()
     if request.user.is_authenticated:
@@ -69,11 +70,12 @@ def home_portfolio(request):
                   {
                       'projects': projects, 'heroes': heroes, 'profile': profile, 'categories': categories,
                       'categorys': categorys, 'paginator': paginator, 'page_number': page_number, 'sort_option': sort_option,
-                      'abouts': abouts,
+                      'abouts': abouts, 'my_social_media_icons': my_social_media_icons
                    })
 
 def view_card_portfolio(request, slug):
     heroes = Hero.objects.all()
+    my_social_media_icons = social_media_icons.objects.all()
     profile = Profile.objects.all()
     if request.user.is_authenticated:
         try:
@@ -83,7 +85,7 @@ def view_card_portfolio(request, slug):
     projects = get_object_or_404(Project, slug=slug)
     return render(request, 'portfolio/view_card_portfolio.html',
                   {
-                      'projects': projects, 'profile': profile, 'heroes': heroes
+                      'projects': projects, 'profile': profile, 'heroes': heroes, 'my_social_media_icons': my_social_media_icons
                    })
                   
 

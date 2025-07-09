@@ -2,6 +2,8 @@
 {% load i18n %}
 
 {% block content %}
+
+{% if LANGUAGE_CODE == 'ar' %}
     <!-- Hero Section -->
     <section id="hero" class="hero section light-background">
       {% for hero in heroes %}
@@ -13,14 +15,13 @@
       <div class="container" data-aos="zoom-out">
         <div class="row justify-content-center">
           <div class="col-lg-9">
-              <h2>{{ hero.title }}</h2>
-                <p>I'm <span class="typed" data-typed-items="{{ hero.content }}">{{ hero.content }}</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
-              <p>I'm <span class="typed">software engineer & cyber security</span></p>
+              <h2>{{ hero.title_ar }}</h2>
+                <p>أنا <span class="typed" data-typed-items="{{ hero.content_ar }}">{{ hero.content_ar }}</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
+              <p>أنا <span class="typed"> مهندس برمجيات وأمن سيبراني</span></p>
                 <div class="social-links">
-              <a href="#"><i class="bi bi-twitter-x"></i></a>
-              <a href="#"><i class="bi bi-facebook"></i></a>
-              <a href="#"><i class="bi bi-instagram"></i></a>
-              <a href="#"><i class="bi bi-linkedin"></i></a>
+              {% for social_media_icons in my_social_media_icons %}
+              <a href="{{ social_media_icons.link }}"><i class="{{ social_media_icons.icon_name }}"></i></a>
+              {% endfor %}
             </div>
           </div>
 
@@ -29,4 +30,33 @@
       {% endfor %}
     </section><!-- /Hero Section -->
 
+    
+    {% else %}
+
+            <!-- Hero Section -->
+        <section id="hero" class="hero section light-background">
+          {% for hero in heroes %}
+            {% if hero.image_hero %}
+            <img src="{{ hero.image_hero.url }}" alt="">
+            {% else %}
+              <img src="{% static 'img/bac6.png' %}" alt="">
+            {% endif %}
+          <div class="container" data-aos="zoom-out">
+            <div class="row justify-content-center">
+              <div class="col-lg-9">
+                  <h2>{{ hero.title }}</h2>
+                    <p>I'm <span class="typed" data-typed-items="{{ hero.content }}">{{ hero.content }}</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
+                  <p>I'm <span class="typed">{% trans "software engineer & cyber security" %}</span></p>
+                    <div class="social-links">
+                  {% for social_media_icons in my_social_media_icons %}
+                  <a href="{{ social_media_icons.link }}"><i class="{{ social_media_icons.icon_name }}"></i></a>
+                  {% endfor %}
+                </div>
+              </div>
+
+            </div>
+          </div>
+          {% endfor %}
+        </section><!-- /Hero Section -->
+    {% endif %}
   {% endblock %}

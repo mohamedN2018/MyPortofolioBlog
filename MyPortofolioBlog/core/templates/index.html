@@ -2,8 +2,13 @@
 {% load i18n %}
 
 {% block content %}
-<html lang="en" data-bs-theme="dark">
-<head>
+    {% if LANGUAGE_CODE == 'ar' %}
+        <!DOCTYPE html>
+        <html lang="ar" dir="rtl">
+    {% else %}
+        <!DOCTYPE html>
+        <html lang="{{ LANGUAGE_CODE|default:'en' }}" dir="ltr">
+    {% endif %}<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% for hero in heroes %}

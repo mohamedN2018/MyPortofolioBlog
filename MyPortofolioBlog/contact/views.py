@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.core.mail import send_mail
-from .models import ContactMain, Contact_Main
+from .models import social_media_icons, Contact_Main
 from hero.models import Hero
 from accounts.models import Profile
 
@@ -10,7 +10,7 @@ from django.conf import settings
 
 def send_message(request):
     my_contact_main = Contact_Main.objects.first()
-
+    my_social_media_icons = social_media_icons.objects.all()
     heroes = Hero.objects.all()
 
     if  request.method == 'POST':
@@ -36,4 +36,4 @@ def send_message(request):
             profile = None
 
 
-    return render(request, 'contact/contact.html', {'my_contact_main': my_contact_main, 'heroes': heroes, 'profile': profile})
+    return render(request, 'contact/contact.html', {'my_contact_main': my_contact_main, 'heroes': heroes, 'profile': profile, 'my_social_media_icons': my_social_media_icons})
