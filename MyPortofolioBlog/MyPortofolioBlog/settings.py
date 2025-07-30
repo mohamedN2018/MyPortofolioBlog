@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'django_filters'
 
 ]
+# commit "git change"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
