@@ -18,7 +18,12 @@ WORKDIR /usr/src/app
 RUN pip3 install --upgrade pip
 RUN pip3 install pipenv
 
+RUN  mkdir -p /usr/src/app/static/
+RUN chmod 755 /usr/src/app/static/
+
+
 COPY . .
+
 
 RUN pipenv requirements > requirements.txt
 RUN pip3 install -r requirements.txt
