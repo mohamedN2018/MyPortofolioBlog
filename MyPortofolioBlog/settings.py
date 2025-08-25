@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
-
+from decouple import config
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,11 +28,12 @@ SECRET_KEY = 'django-insecure-9zh13!ft9arnr-je^1o45gb$^m(rh&hvu!)p1iq#e%%oh*vh8e
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+MAIN_DOMAIN = config('MAIN_DOMAIN')
 
 ALLOWED_HOSTS = ['*']
 CORS_ORIGIN_WHITELIST = ['*']
 CSRF_TRUSTED_ORIGINS = [
-    'https://*'
+    f"{MAIN_DOMAIN}"
 ]
 
 
