@@ -28,6 +28,9 @@ COPY . .
 RUN pipenv requirements > requirements.txt
 RUN pip3 install -r requirements.txt
 
+RUN python manage.py migrate
+RUN python manage.py collectstatic --noinput
+
 EXPOSE 80
 
 CMD ["gunicorn", "--chdir", "/usr/src/app", "--bind", ":80", "MyPortofolioBlog.wsgi:application"]
