@@ -1,13 +1,28 @@
-FROM nginx:alpine
+# pull official base image
+FROM python:3.10.3-alpine
 
-# احذف صفحة Nginx الافتراضية
-RUN rm -rf /usr/share/nginx/html/*
+# set work directory
+WORKDIR /usr/src/app
 
-# انسخ صفحة الـ Coming Soon إلى مجلد Nginx
-COPY coming-soon.html /usr/share/nginx/html/index.html
+# install psycopg2
+RUN apk update \
+    && apk add --virtual build-dependencies build-base gcc python3-dev musl-dev libffi-dev openssl-dev
 
-# افتح البورت 80
+RUN apk add --update tzdata
+ENV TZ=Africa/Cairo
+
+# work dir
+WORKDIR /usr/src/app
+
+# install dependencies
+RUN pip3 install --upgrade pip
+RUN pip3 install pipenv
+
+COPY . .
+
+RUN pipenv lock --requirements > requirements.txt
+RUN pip3 install -r requirements.txt
+
 EXPOSE 80
 
-# شغّل Nginx في الـ foreground
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["gunicorn", "--chdir", "/usr/src/app", "--bind", ":80", "tracer.wsgi:application"]
