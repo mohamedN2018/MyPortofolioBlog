@@ -30,6 +30,8 @@ SECRET_KEY = 'django-insecure-9zh13!ft9arnr-je^1o45gb$^m(rh&hvu!)p1iq#e%%oh*vh8e
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CORS_ORIGIN_WHITELIST = ['*']
+CSRF_TRUSTED_ORIGINS = ['*']
 
 
 # Application definition
@@ -66,7 +68,7 @@ MIDDLEWARE = [
     # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'MyPortofolioBlog.urls'
