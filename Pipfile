@@ -9,8 +9,12 @@ django-user-agents = "*"
 django-ipware = "*"
 geocoder = "*"
 folium = "*"
-gunicorn = "*"
 python-decouple = "*"
+django-jazzmin = "*"
+djangorestframework = "*"
+pillow = "*"
+gunicorn = "*"
+django-filter = "*"
 
 [dev-packages]
 

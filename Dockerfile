@@ -20,9 +20,9 @@ RUN pip3 install pipenv
 
 COPY . .
 
-RUN pipenv lock --requirements > requirements.txt
+RUN pipenv requirements > requirements.txt
 RUN pip3 install -r requirements.txt
 
 EXPOSE 80
 
-CMD ["gunicorn", "--chdir", "/usr/src/app", "--bind", ":80", "myportofolioblog.wsgi:application"]
+CMD ["gunicorn", "--chdir", "/usr/src/app", "--bind", ":80", "MyPortofolioBlog.wsgi:application"]
