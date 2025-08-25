@@ -1,0 +1,50 @@
+{% load static %}
+  <footer id="footer" class="footer position-relative light-background">
+    <div class="container">
+        {% if heroes %}
+            {% for hero in heroes %}
+                <h3 href="{% url 'index' %}" class="sitename">{{ hero.site_name }}</h3>
+            {% endfor %}
+        {% else %}
+            <a class="navbar-brand" href="{% url 'index' %}">My Website</a>
+        {% endif %}
+      <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
+      <div class="social-links d-flex justify-content-center">
+        {% for social_media_icons in my_social_media_icons %}
+        <a href="{{ social_media_icons.link }}"><i class="{{ social_media_icons.icon_name }}"></i></a>
+        {% endfor %}
+      </div>
+      <div class="container">
+        <div class="copyright">
+          <span>Copyright</span> <strong class="px-1 sitename">
+                  {% if heroes %}
+                    {% for hero in heroes %}
+                        <a class="navbar-brand" href="{% url 'index' %}">{{ hero.site_name }}</a>
+                    {% endfor %}
+                {% else %}
+                    <a class="navbar-brand" href="{% url 'index' %}">My Website</a>
+                {% endif %}
+          </strong> <span>All Rights Reserved</span>
+        </div>
+        <div class="credits">
+          Designed by <a href="https://mohamednabilpro.netlify.app/">
+                {% if heroes %}
+                    {% for hero in heroes %}
+                        <a class="navbar-brand" href="{% url 'index' %}">{{ hero.site_name }}</a>
+                    {% endfor %}
+                {% else %}
+                    <a class="navbar-brand" href="{% url 'index' %}">My Website</a>
+                {% endif %}
+                  </a> Distribuited by <a href="https://mohamednabilpro.netlify.app/">
+                    {% if heroes %}
+                    {% for hero in heroes %}
+                        <a class="navbar-brand" href="{% url 'index' %}">{{ hero.site_name }}</a>
+                    {% endfor %}
+                {% else %}
+                    <a class="navbar-brand" href="{% url 'index' %}">My Website</a>
+                {% endif %}
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>

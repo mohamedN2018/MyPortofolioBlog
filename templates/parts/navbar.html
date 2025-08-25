@@ -1,0 +1,402 @@
+{% load static %}
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width" ,initial-scale="1.0"/>
+    <link rel="stylesheet" href
+    "{% static "css/navbar.css" %}">
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet"/>
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet"/>
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet"/>
+    <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet"/>
+    <style>
+        @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap);
+            #navbar {
+            background-color: #333; /* Black background color */
+            position: fixed; /* Make it stick/fixed */
+            z-index: 1;
+            top: 0; /* Stay on top */
+            width: 100%; /* Full width */
+            transition: top 0.3s; /* Transition effect when sliding down (and up) */
+            }
+
+            /* Style the navbar links */
+            #navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            text-decoration: none;
+            }
+
+            #navbar a:hover {
+            background-color: #ddd;
+            color: black;
+            }
+        .profile-container {
+            max-width: 500px;
+            margin: 30px auto;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f9f9f9;
+            font-color: weight;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .profile-imgs {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #4a90e2;
+        }
+
+        .profile-field {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        .profile-label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        body {
+            margin-top: 20px;
+            color: #1a202c;
+            text-align: left;
+            background-color: #e2e8f0;
+        }
+
+        .main-body {
+            padding: 15px;
+        }
+
+        .card {
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+        }
+
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 0 solid rgba(0, 0, 0, .125);
+            border-radius: .25rem;
+        }
+
+        .card-body {
+            flex: 1 1 auto;
+            min-height: 1px;
+            padding: 1rem;
+        }
+
+        .gutters-sm {
+            margin-right: -8px;
+            margin-left: -8px;
+        }
+
+        .gutters-sm > .col, .gutters-sm > [class*=col-] {
+            padding-right: 8px;
+            padding-left: 8px;
+        }
+
+        .mb-3, .my-3 {
+            margin-bottom: 1rem !important;
+        }
+
+        .bg-gray-300 {
+            background-color: #e2e8f0;
+        }
+
+        .h-100 {
+            height: 100% !important;
+        }
+
+        .shadow-none {
+            box-shadow: none !important;
+        }
+
+        .dark-mode {
+          background-color: #121212;
+          color: white;
+        }
+        /* تصميم الزر */
+        .dark-mode-btn {
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          background: none;
+          border: none;
+          font-size: 24px;
+          cursor: pointer;
+          transition: transform 0.3s ease;
+        }
+        .dark-mode-btn :hover {
+          transform: scale (1.2);
+        }
+        body.dark-mode {
+            background: #181a1b !important;
+            color: #e0e0e0 !important;
+        }
+
+        body.dark-mode .navbar {
+            background: #23272b !important;
+            color: #fff !important;
+            padding: 15px;
+        }
+
+        body.dark-mode .navbar .navbar-brand,
+        body.dark-mode .navbar .nav-link,
+        body.dark-mode .navbar .dropdown-toggle {
+            color: #fff !important;
+        }
+
+        body.dark-mode .navbar .nav-link.active {
+            color: #ffd700 !important;
+        }
+
+        body.dark-mode .dropdown-menu {
+            background: #23272b;
+            color: #fff;
+        }
+
+        body.dark-mode .dropdown-item {
+            color: #fff;
+        }
+
+        body.dark-mode .dropdown-item:hover {
+            background: #343a40;
+        }
+
+        body.dark-mode .carousel-inner img,
+        body.dark-mode .hero img,
+        body.dark-mode .category .card-img-top {
+            filter: brightness(0.85);
+        }
+        body.dark-mode .stats, stats-item,
+        body.dark-mode .section,
+        body.dark-mode .card,
+        body.dark-mode .about,
+        body.dark-mode .services, service-item,
+        body.dark-mode .contact{
+            background: #23272b !important;
+            color: #e0e0e0 !important;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        body.dark-mode .footer {
+            background: #181a1b !important;
+            color: #fff !important;
+        }
+
+        body.dark-mode .btn-primary {
+            background: linear-gradient(90deg,
+          #0056b3 60%,
+          #007bff 100%) !important;
+        }
+
+        body.dark-mode .btn-outline-primary {
+            border-color: #007bff !important;
+            color: #fff !important;
+        }
+
+        body.dark-mode .btn-outline-primary:hover {
+            background: #007bff !important;
+            color: #fff !important;
+        }
+
+        body.dark-mode input,
+        body.dark-mode textarea {
+            background: #23272b !important;
+            color: #fff !important;
+            border-color: #444 !important;
+        }      
+
+        body.dark-mode #services .service-item{
+          background: #23272b !important;
+          color: #e0e0e0 !important;
+          box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+
+        }
+
+    </style>
+</head>
+<body>
+
+<nav class="container navbar navbar-expand-lg ">
+    <div class="row w-100 ">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                {% if heroes %}
+                    {% for hero in heroes %}
+                        <a class="navbar-brand" href="{% url 'index' %}">{{ hero.site_name }}</a>
+                    {% endfor %}
+                {% else %}
+                    <a class="navbar-brand" href="{% url 'index' %}">My Website</a>
+                {% endif %}
+            <ul class="navbar-nav col">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about_details' %}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home_portfolio' %}">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Services_list_view' %}">Services</a>
+                </li>
+            </ul>
+
+                        <form method="get" action="" class="form-inline col-4 d-flex justify-content-center my-2 my-lg-0">
+                            <div class="input-group">
+                                <input type="text" name="search" class="form-control" 
+                                       placeholder="Search by name" value="{{ request.GET.search }}">
+                                <input type="hidden" name="category" value="{{ request.GET.category }}">
+                                <input type="hidden" name="status" value="{{ request.GET.status }}">
+                                <input type="hidden" name="price" value="{{ request.GET.price }}">
+                                <input type="hidden" href='{% url "home_portfolio" %}' name="home_portfolio" value="{{ request.GET.home_portfolio }}">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary" type="submit">
+                                        <i class="fa fa-search">Search</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+            <div class="col h-75 d-flex flex-wrap d-flex justify-content-end">
+                <div class="row">
+            {% if user.is_authenticated %}
+                <div class="col-sm align-items-center d-flex justify-content-between">
+                    <div class="col-sm{% if not profile.profile_picture %} align-center p-1{% endif %}">
+                        <a href="{% url 'accounts:profile' %}">
+                            {% if profile.profile_picture %}
+                                <img src="{{ profile.profile_picture.url }}" alt="Profile Image" class="profile-imgs">
+                            {% else %}
+                                <img src="{% static 'default_profile.jpg' %}" alt="Default Profile Image" class="profile-imgs">
+                            {% endif %}
+                        </a>
+                    </div>
+
+                    <div class="col-sm px-2 fs-2 align-items-center">
+                        <h4 class="m-0 fs-6">{{ user.first_name }} {{ user.last_name }}</h4>
+                        <p class="m-0 fs-5">{{ user.username }}</p>
+                    </div>
+
+                    <div class="col-sm align-items-center m-0">
+                        <form class="m-0" method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Logout</button>
+                        </form>
+                    </div>
+                </div>
+            {% else %}
+                <div class="col">
+                    <a href="{% url 'accounts:signup' %}">
+                        <button type="button" class="btn btn-outline-primary">
+                            <i class="bi bi-plus-square"></i> Sign Up
+                        </button>
+                    </a>
+                    <a href="{% url 'login' %}">
+                        <button type="button" class="btn btn-outline-info">
+                            <i class="bi bi-box-arrow-in-right"></i> Login
+                        </button>
+                    </a>
+                </div>
+            {% endif %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+</nav> 
+
+
+
+
+          <!-- Dark mode toggle button -->
+<button id="darkModeToggle"class="dark-mode-btn">
+🌙
+</button>
+<script>
+      const toggle = document.getElementById("darkModeToggle");
+      const body = document.body;
+      // Load saved mode
+
+      if (localStorage.getItem("mode") === "dark") {
+        body.classList.add("dark-mode");
+        toggle.textContent = "☀️";
+        // Sun icon for light mode
+      }
+
+      toggle.addEventListener("click", function () {
+        body.classList.toggle("dark-mode");
+
+        if (body.classList.contains("dark-mode")) {
+          localStorage.setItem("mode", "dark");
+          toggle.textContent = "🌙";
+        } else {
+          localStorage.setItem("mode", "light");
+          toggle.textContent = "☀️";
+        }
+      });
+      </script>
+
+      <script>
+        // Maintain filter state when paginating
+        $(document).ready(function() {
+            $('.page-link').each(function() {
+                var href = $(this).attr('href');
+                if (href) {
+                    // Add existing filters to pagination links
+                    var params = new URLSearchParams(window.location.search);
+                    params.delete('page');
+                    var existingParams = params.toString();
+                    
+                    if (href.indexOf('?') === -1) {
+                        href += '?' + existingParams;
+                    } else {
+                        href += '&' + existingParams;
+                    }
+                    $(this).attr('href', href);
+                }
+            });
+        });
+</script>
+
+
+
+
+<!-- Vendor JS Files -->
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+<script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+<script src="{% static 'assets/vendor/typed.js/typed.umd.js' %}"></script>
+<script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+<script src="{% static 'assets/vendor/waypoints/noframework.waypoints.js' %}"></script>
+<script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+<script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+<!-- Main JS File -->
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/navbarjs.js' %}"></script>
+<script src="{% static 'assets/js/main.js' %}"></script>
+<script src="{% static 'js/js.js' %}"></script>
+
+
+</body>
