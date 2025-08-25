@@ -1,0 +1,13 @@
+FROM nginx:alpine
+
+# احذف صفحة Nginx الافتراضية
+RUN rm -rf /usr/share/nginx/html/*
+
+# انسخ صفحة الـ Coming Soon إلى مجلد Nginx
+COPY coming-soon.html /usr/share/nginx/html/index.html
+
+# افتح البورت 80
+EXPOSE 80
+
+# شغّل Nginx في الـ foreground
+CMD ["nginx", "-g", "daemon off;"]
