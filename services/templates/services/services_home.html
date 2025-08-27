@@ -34,7 +34,9 @@
 
 {% include "services/header.html" %}
 
-
+<body>
+  
+  <main id="main" class="mt-5">
 
     <!-- Services Section -->
     <section id="services" class="services section">
@@ -76,6 +78,8 @@
 
 {% include "parts/footer.html" %}
 
+  </main>
+
         <!-- Vendor JS Files -->
   <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
@@ -92,6 +96,9 @@
   <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'assets/js/main.js' %}"></script>
   <script src="{% static 'js/js.js' %}"></script>
+
+
+</body>
 
 
 {% endblock %}

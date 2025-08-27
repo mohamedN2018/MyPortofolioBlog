@@ -167,8 +167,8 @@ h6 {
 
 @media (min-width: 1200px) and (max-width: 1600px) {
   .header~main {
-    margin-left: 160px;
-  }
+    display: block;
+    }
 
   .header~main .hero {
     margin-left: -160px;
@@ -1450,11 +1450,4 @@ section,
   font-size: 20px;
   margin-right: 8px;
   color: var(--accent-color);
-}
-
-/*--------------------------------------------------------------
-# Starter Section Section
---------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
 }
