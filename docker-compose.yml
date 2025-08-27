@@ -10,3 +10,5 @@ services:
       expose:
         - 80
       command: "gunicorn --chdir /usr/src/app --access-logfile - --error-logfile - --bind :80 MyPortofolioBlog.wsgi:application"
+      environment:
+        - MAIN_DOMAIN=${MAIN_DOMAIN}
