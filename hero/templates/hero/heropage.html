@@ -46,7 +46,6 @@
               <div class="col-lg-9">
                   <h2>{{ hero.title }}</h2>
                     <p>I'm <span class="typed" data-typed-items="{{ hero.content }}">{{ hero.content }}</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
-                  <p>I'm <span class="typed">{% trans "software engineer & cyber security" %}</span></p>
                     <div class="social-links">
                   {% for social_media_icons in my_social_media_icons %}
                   <a href="{{ social_media_icons.link }}"><i class="{{ social_media_icons.icon_name }}"></i></a>
