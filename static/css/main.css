@@ -171,7 +171,11 @@ h6 {
     }
 
   .header~main .hero {
+<<<<<<< HEAD
     margin-left: 0px;
+=======
+    margin-left: -0px;
+>>>>>>> 9b82e44f099b4e0d454287d44ebad5ae3f5bf8d4
     width: 100vw;
   }
 }
