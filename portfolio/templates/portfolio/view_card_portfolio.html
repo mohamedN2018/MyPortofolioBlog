@@ -1,5 +1,7 @@
 {% load static %}
 {% load i18n %}
+{% load custom_filters %}
+
 <!DOCTYPE html>
 <html lang="en">
 {% block content %}
@@ -132,6 +134,11 @@
                 {% else %}
                   <h3 class="font-weight-semi-bold mb-4"> Dynamic Price </h3>
                  {% endif %}
+                <li><strong>Website:</strong>
+                    <span>
+                        <a class="text-decoration-none" href="{{ projects.url }}">{{ projects.url|domain_name }}</a>
+                    </span>
+                </li>
                 <p class="mb-4"> {{ projects.description }} </p>
                 <div class="d-flex pt-2">
                     <p class="text-dark font-weight-medium mb-0 mr-2">Share on:</p>
