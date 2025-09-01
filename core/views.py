@@ -23,7 +23,7 @@ def index(request):
     my_skils_tow = skils_tow.objects.all()
     main_skils = skils_main.objects.all()
     abouts = About.objects.all()
-    projects = Project.objects.all().order_by('-created_at')[:6]
+    projects = Project.objects.all().order_by('-created_at')[:7]
 
     my_resume = resume.objects.all()
     my_resume_list_one = resume_list_one.objects.all()

@@ -1,50 +1,68 @@
 {% load static %}
-<!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio section">
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        {% for main_page in my_main_page %}
-        <h2><a class="text-decoration-none link-secondary" href="{% url "home_portfolio" %}" type="hidden"> {{ main_page.main_title }} </a> </h2>
-        <p>{{ main_page.main_description }}</p>
+     <!-- Portfolio Section -->
+<section id="portfolio" class="portfolio section">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    {% for main_page in my_main_page %}
+      <h2>
+        <a class="text-decoration-none link-secondary" href="{% url 'home_portfolio' %}">
+          {{ main_page.main_title }}
+        </a>
+      </h2>
+      <p>{{ main_page.main_description }}</p>
+        <a class="text-decoration-none link-secondary" href="{% url "home_portfolio" %}" type="hidden"><li> All Portfolio </li></a> 
+    {% endfor %}
+  </div>
+  <!-- End Section Title -->
+
+  <div class="container">
+    <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+      <!-- Portfolio Filters -->
+      <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+        <li data-filter="*" class="filter-active">All</li>
+        {% for category in categories %}
+          <li data-filter=".{{ category.slug }}">
+            {{ category.name_caregory }}
+          </li>
         {% endfor %}
-      </div><!-- End Section Title -->
+      </ul>
+      <!-- End Portfolio Filters -->
 
-      <div class="container">
-        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
-          <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-         <a class="text-decoration-none link-secondary" href="{% url "home_portfolio" %}" type="hidden"><li> All Portfolio </li></a> 
-          <li data-filter="*" class="filter-active">All</li>
-            {% for category in categories %}
-              <li value="{{ category.slug }}" data-filter=".{{ category.slug }}" {% if request.GET.category == category.slug %}selected{% endif %}>{{ category.name_caregory }}</li>                              
-            {% endfor %}
-            </ul><!-- End Portfolio Filters -->
-          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-            {% for Project in projects %}
-                  <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                        {% if Project.image %}
-                            <img class="img-fluid" src="{{ Project.image.url }}" alt="">
-                        {% else %}
-                              <img src="{% static 'img/bac6.png' %}" alt="">
-                        {% endif %}
-                        <div class="portfolio-info">
-                          <h4> {{ Project.name_project }} </h4>
-                          <p>{{ Project.description }}</p>
-                          {% if Project.image %}
-                          <a href="{{ Project.image.url }}" title="{{ Project.name_project }}" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                          <a href="{% url "view_card_portfolio" Project.slug  %}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                              {% if Project %}      
-                              <li data-filter=".filter-app">{{ Project.category }}</li>                              
-                                  {% else %}
-                                      <h6>not list</h6>
-                                {% endif %}
-                        {% else %}
-                              <img src="{% static 'img/bac6.png' %}" alt="">
-                        {% endif %}
-                    </div>
-                 </div><!-- End Portfolio Item -->
-            {% endfor %}
-          </div><!-- End Portfolio Container -->
-        </div>
+      <!-- Portfolio Items -->
+      <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+        {% for Project in projects %}
+          <div class="col-lg-4 col-md-6 portfolio-item isotope-item {{ Project.category.slug }}">
+            {% if Project.image %}
+              <img class="img-fluid" src="{{ Project.image.url }}" alt="{{ Project.name_project }}">
+            {% else %}
+              <img class="img-fluid" src="{% static 'img/bac6.png' %}" alt="No Image">
+            {% endif %}
+            <div class="portfolio-info">
+              <h4>{{ Project.name_project }}</h4>
+              <p>{{ Project.description }}</p>
+              {% if Project.image %}
+                <a href="{{ Project.image.url }}" 
+                   title="{{ Project.name_project }}" 
+                   data-gallery="portfolio-gallery" 
+                   class="glightbox preview-link">
+                   <i class="bi bi-zoom-in"></i>
+                </a>
+              {% endif %}
+              <a href="{% url 'view_card_portfolio' Project.slug %}" 
+                 title="More Details" 
+                 class="details-link">
+                 <i class="bi bi-link-45deg"></i>
+              </a>
+            </div>
+          </div>
+        {% endfor %}
       </div>
-    </section><!-- /Portfolio Section -->
+      <!-- End Portfolio Items -->
+
+    </div>
+  </div>
+</section>
+<!-- /Portfolio Section -->

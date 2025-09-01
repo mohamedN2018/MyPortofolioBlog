@@ -11,7 +11,9 @@ from .filters import ProjectFilter
 
 def home_portfolio(request):
     abouts = About.objects.all()
-    projects = Project.objects.all().order_by('-created_at')[:6]
+
+    projects = Project.objects.all().order_by('-created_at')[:7]
+
     my_social_media_icons = social_media_icons.objects.all()
     heroes = Hero.objects.all()
     profile = Profile.objects.all()
@@ -61,7 +63,7 @@ def home_portfolio(request):
 
 
     # Pagination (using the already filtered/sorted queryset)
-    paginator = Paginator(projects, 3)
+    paginator = Paginator(projects, 6)
     page_number = request.GET.get('page')
     projects = paginator.get_page(page_number)  
     
