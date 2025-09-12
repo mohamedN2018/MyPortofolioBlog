@@ -1,43 +1,59 @@
-        <div class="row">
-          <div class="col-4 gy-5">
-            <div class="col-lg-4 w-100" data-aos="fade-up" data-aos-delay="100">
-                <div class="service-box">
-                  <h4>About List</h4>
-                  <div class="services-list">
-                    <ul>
-                  {% for About_list in data_list %}
-                      <a class="text-decoration-none" href="{% url 'About_list_details' About_list.slug %}" 
-                        data-slug="{{ About_list.slug }}" 
-                        class="active">
-                          <i class="bi bi-arrow-right-circle"></i>
-                          <span>{{ About_list.about_list }}</span>
-                      </a>
-                  {% endfor %}
-                  </div>
-                </div><!-- End Services List -->
+<div class="row gy-4">
+  
 
-                <div class="service-box">
-                      <h4>Download Catalog</h4>
-                  <h4>{{ down_cv.name_down }}</h4>
-                  <div class="download-catalog">
-                   {% for downloadcv in down_cv %}
-                    <a class="text-decoration-none" href="{{ downloadcv.file.url }}" download="{{ downloadcv.file.url }}"><i class="bi bi-filetype-pdf"></i><span>{{ downloadcv.name_down }} </span></a>
-                      {% empty %}
-                    <div class="service-box">
-                    <h1> no file </h1>
-                    </div>
-                  {% endfor %}
-                    <a class="text-decoration-none" href="{% url 'online_cv' %}"><i class="bi bi-file-earmark-word"></i><span>Cv Online</span></a>
-                  </div>
+  <!-- Download Catalog -->
+  <div class="col-12 col-md-6 col-lg-4">
+    <div class="service-box h-100 p-4 shadow-sm rounded" data-aos="fade-up" data-aos-delay="200">
+      <h4 class="mb-3">Download Catalog</h4>
+      <div class="download-catalog d-flex flex-column gap-2">
+        {% for downloadcv in down_cv %}
+          <a class="text-decoration-none d-flex align-items-center" 
+             href="{{ downloadcv.file.url }}" download>
+            <i class="bi bi-filetype-pdf me-2"></i>
+            <span>{{ downloadcv.name_down }}</span>
+          </a>
+        {% empty %}
+          <p class="text-muted mb-0">No file available</p>
+        {% endfor %}
+        <a class="text-decoration-none d-flex align-items-center" href="{% url 'online_cv' %}">
+          <i class="bi bi-file-earmark-word me-2"></i>
+          <span>CV Online</span>
+        </a>
+      </div>
+    </div>
+  </div>
 
-                </div><!-- End Services List -->
-
-                <div class="help-box d-flex flex-column justify-content-center align-items-center">
-                  <i class="bi bi-headset help-icon"></i>
-                  <h4>Have a Question?</h4>
-                  <p class="d-flex align-items-center mt-2 mb-0"><i class="bi bi-telephone me-2"></i> <span>+20 {{ my_contact_main.cont_phone }}</span></p>
-                  <p class="d-flex align-items-center mt-1 mb-0"><i class="bi bi-envelope me-2"></i> <a href="{{ my_contact_main.cont_email }}">{{ my_contact_main.cont_email }}</a></p>
-                </div>
-
-          </div>
-        </div>
+  <!-- Help Box -->
+  <div class="col-12 col-lg-4">
+    <div class="help-box h-100 d-flex flex-column justify-content-center align-items-center text-center p-4 shadow-sm rounded" data-aos="fade-up" data-aos-delay="300">
+      <i class="bi bi-headset help-icon fs-1 mb-3"></i>
+      <h4 class="mb-3">Have a Question?</h4>
+      <p class="d-flex align-items-center mb-2">
+        <i class="bi bi-telephone me-2"></i> 
+        <span>+20 {{ my_contact_main.cont_phone }}</span>
+      </p>
+      <p class="d-flex align-items-center mb-0">
+        <i class="bi bi-envelope me-2"></i> 
+        <a href="mailto:{{ my_contact_main.cont_email }}">{{ my_contact_main.cont_email }}</a>
+      </p>
+    </div>
+  </div>
+  
+  <!-- About List -->
+  <div class="col-12 col-md-6 col-lg-4">
+    <div class="service-box h-100 p-4 shadow-sm rounded" data-aos="fade-up" data-aos-delay="100">
+      <h4 class="mb-3">About List</h4>
+      <ul class="list-unstyled mb-0">
+        {% for About_list in data_list %}
+          <li class="mb-2">
+            <a class="text-decoration-none d-flex align-items-center" 
+               href="{% url 'About_list_details' About_list.slug %}">
+              <i class="bi bi-arrow-right-circle me-2"></i>
+              <span>{{ About_list.about_list }}</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>

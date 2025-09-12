@@ -39,36 +39,45 @@
     <i class="header-toggle d-xl-none bi bi-list"></i>
   </header>
 
-  <main class="main">
+ <main class="main">
   {% include "parts/navbar.html" %}
   {% include "about/header_details.html" %}
 
-    <!-- Service Details Section -->
-    <section id="service-details" class="service-details section">
-      <div class="container">
-       {% include "about/about_list.html" with data_list=data_list %}
-        <div class="col-8 gy-5">
-          <div class="col-lg-8 w-100 ps-lg-5" data-aos="fade-up" data-aos-delay="200">
-            {% if about_details.images_about_list %}
-                <img src="{{ about_details.images_about_list.url }}" alt="Profile Image" class="img-fluid services-img">
-            {% else %}
-                <img src="{% static 'default_profile.jpg' %}" alt="Default Profile Image"  class="img-fluid services-img">
-            {% endif %}
-            <h3><a class="text-decoration-none">{{ about_details.about_list }}</a></h3>
-            <h3>{{ about_details.title_about }}</h3>
-
-            <p>{{ about_details.description_list }}</p>
-            <ul>
-              <li><i class="bi bi-check-circle"></i> <span>Aut eum totam accusantium voluptatem.</span></li>
-              <li><i class="bi bi-check-circle"></i> <span>Assumenda et porro nisi nihil nesciunt voluptatibus.</span></li>
-              <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea</span></li>
-            </ul>
-          </div>
-        </div>
-        </div>
+<!-- Service Details Section -->
+<section id="service-details" class="service-details section">
+  <div class="container">
+    <div class="row gy-4 justify-content-center">
+      
+      <!-- Sidebar -->
+      <div class="col-12 col-lg-3">
+        {% include "about/about_list.html" with data_list=data_list %}
       </div>
-    </section><!-- /Service Details Section -->
-  </main>
+
+      <!-- Main Content -->
+      <div class="col-12 col-lg-7 ps-lg-5" data-aos="fade-up" data-aos-delay="200">
+        {% if about_details.images_about_list %}
+            <img src="{{ about_details.images_about_list.url }}" 
+                 alt="Profile Image" 
+                 class="img-fluid services-img mb-4">
+        {% else %}
+            <img src="{% static 'default_profile.jpg' %}" 
+                 alt="Default Profile Image"  
+                 class="img-fluid services-img mb-4">
+        {% endif %}
+
+        <h3><a class="text-decoration-none">{{ about_details.about_list }}</a></h3>
+        <h4>{{ about_details.title_about }}</h4>
+
+        <p>{{ about_details.description_list }}</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- /Service Details Section -->
+
+</main>
+
 
 {% include "parts/footer.html" %}
 
