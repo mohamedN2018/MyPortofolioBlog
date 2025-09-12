@@ -18,17 +18,18 @@
 
                 <div class="service-box">
                       <h4>Download Catalog</h4>
-                  {% for downloadcv in down_cv %}
                   <h4>{{ down_cv.name_down }}</h4>
                   <div class="download-catalog">
+                   {% for downloadcv in down_cv %}
                     <a class="text-decoration-none" href="{{ downloadcv.file.url }}" download="{{ downloadcv.file.url }}"><i class="bi bi-filetype-pdf"></i><span>{{ downloadcv.name_down }} </span></a>
-                    <a class="text-decoration-none" href="{% url 'online_cv' %}"><i class="bi bi-file-earmark-word"></i><span>Cv Online</span></a>
-                  </div>
-                   {% empty %}
+                      {% empty %}
                     <div class="service-box">
                     <h1> no file </h1>
                     </div>
                   {% endfor %}
+                    <a class="text-decoration-none" href="{% url 'online_cv' %}"><i class="bi bi-file-earmark-word"></i><span>Cv Online</span></a>
+                  </div>
+
                 </div><!-- End Services List -->
 
                 <div class="help-box d-flex flex-column justify-content-center align-items-center">
